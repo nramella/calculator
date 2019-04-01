@@ -3,8 +3,11 @@ var inputNumber2 = [];
 var displayValue = [];
 var operator;
 
+showDisplayValue(0);
+
 // Adds the inputted values into the displayValue array, then updates the calc display
 function showDisplayValue (input) {
+    displayValue = [];
     displayValue.push(input);
     console.log(displayValue.join(""));
     document.getElementById('displayValue').innerText = displayValue.join("");
@@ -12,9 +15,9 @@ function showDisplayValue (input) {
 
 // Clears the current displayValue array and on calc
 function clearCalc () {
-    displayValue = [];
+    displayValue = [0];
     operator;
-    showDisplayValue();
+    showDisplayValue(displayValue);
 }
 
 // Stores the value of the first inputted number into the calculator
