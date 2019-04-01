@@ -1,0 +1,30 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 20pt;
+}
+
+.main {
+    text-align: center;
+}
+
+.calculator {
+    margin: 0 auto;
+    width: 300px;
+}
+
+.display {
+    background-color: lightgrey;
+    height: 40px;
+
+}
+
+.row {
+
+}
+
+.button {
+    display: inline-block;
+    margin: 15px;
+    font-size: 18px;
+}
