@@ -11,10 +11,10 @@ html, body {
 
 .calculator {
     margin: 0 auto;
-    padding: 15px;
+    padding: 10px;
     width: 350px;
     background-color: black;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .display {
@@ -53,8 +53,9 @@ html, body {
     background-color: rgb(255, 148, 98);
 }
 
-#zero, 
-#clear {
+#zero {
     width: 155px;
-    border-radius: 10pt;
+    padding-left: 25px;
+    border-radius: 30pt;
+    text-align: left;
 }

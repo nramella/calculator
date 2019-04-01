@@ -3,6 +3,7 @@ var inputNumber2 = [];
 var displayValue = [];
 var operator;
 
+setZero();
 
 // Adds the inputted values into the displayValue array, then updates the calc display
 function showDisplayValue (input) {
@@ -15,7 +16,11 @@ function showDisplayValue (input) {
 function clearCalc () {
     displayValue = [];
     operator;
-    showDisplayValue(displayValue);
+    setZero();
+}
+
+function setZero () {
+    document.getElementById('displayValue').innerText = 0;
 }
 
 // Stores the value of the first inputted number into the calculator
@@ -44,6 +49,13 @@ function negative () {
     } else {
         showDisplayValue('-');
     }
+}
+
+// Changes display value to a percentage by multiplying by 0.01
+function percent () {
+    percentage = Number(displayValue) * 0.01;
+    displayValue = [];
+    showDisplayValue(percentage);
 }
 
 // Addition function
