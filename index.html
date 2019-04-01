@@ -17,6 +17,7 @@
             </div>
             <div class="row">
                 <button class="button" id="clear" onclick="clearCalc()">Clear</button>
+                <button class="button" id="negative" onclick="showDisplayValue('-')">+-</button>
                 <button class="button" id="divide" onclick="storeValueOne('divide')">/</button>
             </div>
             <div class="row">
@@ -38,7 +39,8 @@
                 <button class="button" id="add" onclick="storeValueOne('add')">+</button>
             </div>
             <div class="row">
-                <button class="button" id="0" onclick="showDisplayValue(0)">0</button>
+                <button class="button" id="zero" onclick="showDisplayValue(0)">0</button>
+                <button class="button" id="." onclick="showDisplayValue('.')">.</button>
                 <button class="button" id="equals" onclick="storeValueTwo()">=</button>
             </div>
 

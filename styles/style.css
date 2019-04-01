@@ -19,12 +19,14 @@ html, body {
 
 }
 
-.row {
-
-}
-
 .button {
     display: inline-block;
     margin: 15px;
     font-size: 18px;
+    width: 30px;
+}
+
+#zero, 
+#clear {
+    width: 100px;
 }

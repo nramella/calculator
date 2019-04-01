@@ -35,34 +35,35 @@ function storeValueTwo () {
     operate(operator, inputNumber1, inputNumber2)
 }
 
+// Addition function
 function add (inputNumber1, inputNumber2) {
     var value = inputNumber1 + inputNumber2;
-    console.log("Equals "+value);
     displayValue = [];
     showDisplayValue(value);
 }
 
+// Subtraction function
 function subtract (inputNumber1, inputNumber2) {
     var value = inputNumber1 - inputNumber2;
-    console.log(value);
     displayValue = [];
     showDisplayValue(value);
 }
 
+// Multiplication function
 function multiply (inputNumber1, inputNumber2) {
     var value = inputNumber1 * inputNumber2
-    console.log(value);
     displayValue = [];
     showDisplayValue(value);
 }
 
+// Division function
 function divide (inputNumber1, inputNumber2) {
     var value = inputNumber1 / inputNumber2;
-    console.log(value);
     displayValue = [];
     showDisplayValue(value);
 }
 
+// Calls the appropriate function based on the operator and passes the two inputted numbers to them
 function operate (operator, inputNumber1, inputNumber2) {
     if (operator == "add") {
         add(inputNumber1, inputNumber2);
