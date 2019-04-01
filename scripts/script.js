@@ -3,11 +3,9 @@ var inputNumber2 = [];
 var displayValue = [];
 var operator;
 
-showDisplayValue(0);
 
 // Adds the inputted values into the displayValue array, then updates the calc display
 function showDisplayValue (input) {
-    displayValue = [];
     displayValue.push(input);
     console.log(displayValue.join(""));
     document.getElementById('displayValue').innerText = displayValue.join("");
@@ -15,7 +13,7 @@ function showDisplayValue (input) {
 
 // Clears the current displayValue array and on calc
 function clearCalc () {
-    displayValue = [0];
+    displayValue = [];
     operator;
     showDisplayValue(displayValue);
 }
@@ -36,6 +34,16 @@ function storeValueTwo () {
     console.log(inputNumber2);
 
     operate(operator, inputNumber1, inputNumber2)
+}
+
+// Checks if negative sign is currently displayed, if so, it removes it
+function negative () {
+    if (displayValue[0] == '-'){
+        displayValue = [];
+        showDisplayValue();
+    } else {
+        showDisplayValue('-');
+    }
 }
 
 // Addition function

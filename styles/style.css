@@ -1,16 +1,20 @@
 html, body {
     margin: 0;
     padding: 0;
+    background-color: lightslategray;
 }
 
 .main {
     text-align: center;
+    margin-top: 30px;
 }
 
 .calculator {
     margin: 0 auto;
+    padding: 15px;
     width: 350px;
     background-color: black;
+    border-radius: 10px;
 }
 
 .display {
@@ -33,19 +37,24 @@ html, body {
     width: 70px;
     color: white;
     background-color: #252525;
+    border: 1px solid;
     border-radius: 50%;
 }
 
-#add,
-#subtract,
-#multiply,
-#divide,
-#equals {
+.button:hover {
+    background-color: #505050;
+}
+
+.operator {
     background-color: #EA8120;
+}
+
+.operator:hover{
+    background-color: rgb(255, 148, 98);
 }
 
 #zero, 
 #clear {
-    width: 160px;
+    width: 155px;
     border-radius: 10pt;
 }
