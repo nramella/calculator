@@ -8,7 +8,6 @@ setZero();
 // Adds the inputted values into the displayValue array, then updates the calc display
 function showDisplayValue (input) {
     displayValue.push(input);
-    console.log(displayValue.join(""));
     document.getElementById('displayValue').innerText = displayValue.join("");
 }
 
@@ -58,30 +57,47 @@ function percent () {
     showDisplayValue(percentage);
 }
 
+// Checks if decimal has already been added
+function checkDecimal () {
+    console.log("before loop "+displayValue.length)
+    for (var i=0; i<=displayValue.length; i++) {
+        console.log(displayValue[i]);
+        if (displayValue[i] == ".") {
+            return;
+        }
+    }
+    addDecimal();
+}
+
+// Adds decimal 
+function addDecimal () {
+    showDisplayValue('.');
+}
+
 // Addition function
 function add (inputNumber1, inputNumber2) {
-    var value = inputNumber1 + inputNumber2;
+    var value = (inputNumber1 + inputNumber2);
     displayValue = [];
     showDisplayValue(value);
 }
 
 // Subtraction function
 function subtract (inputNumber1, inputNumber2) {
-    var value = inputNumber1 - inputNumber2;
+    var value = (inputNumber1 - inputNumber2);
     displayValue = [];
     showDisplayValue(value);
 }
 
 // Multiplication function
 function multiply (inputNumber1, inputNumber2) {
-    var value = inputNumber1 * inputNumber2
+    var value = (inputNumber1 * inputNumber2);
     displayValue = [];
     showDisplayValue(value);
 }
 
 // Division function
 function divide (inputNumber1, inputNumber2) {
-    var value = inputNumber1 / inputNumber2;
+    var value = (inputNumber1 / inputNumber2);
     displayValue = [];
     showDisplayValue(value);
 }
