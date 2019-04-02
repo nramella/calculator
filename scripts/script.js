@@ -1,5 +1,5 @@
-var inputNumber1 = [];
-var inputNumber2 = [];
+var inputNumber1 = 0;
+var inputNumber2 = 0;
 var displayValue = [];
 var operator;
 
@@ -19,6 +19,8 @@ function showDisplayValue (input) {
 // Clears the current displayValue array and on calc
 function clearCalc () {
     displayValue = [];
+    inputNumber1 = 0;
+    inputNumber2 = 0;
     operator;
     setZero();
 }
@@ -28,18 +30,27 @@ function setZero () {
     document.getElementById('displayValue').innerText = 0;
 }
 
-// Stores the value of the first inputted number into the calculator
-function storeValueOne (inputOperator) {
-    inputNumber1 = Number(displayValue.join(""));
-    operator = inputOperator;
+// Stores the selected operator
+function storeOperator (input) {
+    storeValueOne();
+    operator = input;
     displayValue = [];
-    
+}
+
+// Stores the value of the first inputted number into the calculator
+function storeValueOne () {
+    inputNumber1 = Number(displayValue.join(""));
 }
 
 // Stores the value of the second inputted number into the calculator
 function storeValueTwo () {
     inputNumber2 = Number(displayValue.join(""));
-    operate(operator, inputNumber1, inputNumber2)
+}
+
+// Calls storeValueTwo to store current displayValue, then calls the operate function
+function equals () {
+    storeValueTwo();
+    operate(operator, inputNumber1, inputNumber2);
 }
 
 // Checks if negative sign is currently displayed, if so, it removes it
@@ -63,7 +74,6 @@ function percent () {
 function checkDecimal () {
     console.log("before loop "+displayValue.length)
     for (var i=0; i<=displayValue.length; i++) {
-        console.log(displayValue[i]);
         if (displayValue[i] == ".") {
             return;
         }
@@ -106,6 +116,7 @@ function divide (inputNumber1, inputNumber2) {
 
 function roundValue (value) {
     var newValue = parseFloat(value.toFixed(8));
+    displayValue = [];
     showDisplayValue(newValue);
 }
 
