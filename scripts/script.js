@@ -1,134 +1,203 @@
-var inputNumber1 = 0;
-var inputNumber2 = 0;
-var displayValue = [];
-var operator;
+// Variables //
+const number = document.querySelectorAll(".numBtn");
+const operator = document.querySelectorAll(".operatorBtn");
+const percent = document.querySelector(".percentBtn");
+const decimal = document.querySelector(".decBtn");
+const clear = document.querySelector(".clearBtn");
+const negative = document.querySelector(".negBtn");
+const equals = document.querySelector(".equalsBtn");
+const equationDisplay = document.querySelector(".equationDisplay");
+const resultsDisplay = document.querySelector(".resultsDisplay");
 
-setZero();
+var equationDisplayArray = [];
+var equationArray = [];
+var resultsValue = [];
+var operatorSelection;
 
-// Adds the inputted values into the displayValue array, then updates the calc display
-function showDisplayValue (input) {
-    displayValue.push(input);
+// Creates array with the full equation to be solved // 
+function createEquationArray () {
+    var op;
+    var number = '';
 
-    if (displayValue.length < 10){
-        document.getElementById('displayValue').innerText = displayValue.join("");
-    } else {
-        return;
-    }
-}
-
-// Clears the current displayValue array and on calc
-function clearCalc () {
-    displayValue = [];
-    inputNumber1 = 0;
-    inputNumber2 = 0;
-    operator;
-    setZero();
-}
-
-// Set display to show 0
-function setZero () {
-    document.getElementById('displayValue').innerText = 0;
-}
-
-// Stores the selected operator
-function storeOperator (input) {
-    storeValueOne();
-    operator = input;
-    displayValue = [];
-}
-
-// Stores the value of the first inputted number into the calculator
-function storeValueOne () {
-    inputNumber1 = Number(displayValue.join(""));
-}
-
-// Stores the value of the second inputted number into the calculator
-function storeValueTwo () {
-    inputNumber2 = Number(displayValue.join(""));
-}
-
-// Calls storeValueTwo to store current displayValue, then calls the operate function
-function equals () {
-    storeValueTwo();
-    operate(operator, inputNumber1, inputNumber2);
-}
-
-// Checks if negative sign is currently displayed, if so, it removes it
-function negative () {
-    if (displayValue[0] == '-'){
-        displayValue = [];
-        showDisplayValue();
-    } else {
-        showDisplayValue('-');
-    }
-}
-
-// Changes display value to a percentage by multiplying by 0.01
-function percent () {
-    percentage = Number(displayValue) * 0.01;
-    displayValue = [];
-    roundValue(percentage);
-}
-
-// Checks if decimal has already been added
-function checkDecimal () {
-    console.log("before loop "+displayValue.length)
-    for (var i=0; i<=displayValue.length; i++) {
-        if (displayValue[i] == ".") {
-            return;
+    for (var i = 0; i<equationDisplayArray.length; i++){
+        if (equationDisplayArray[i] == '+' ||
+            equationDisplayArray[i] == '-' ||
+            equationDisplayArray[i] == '*' ||
+            equationDisplayArray[i] == '/' ||
+            equationDisplayArray[i] == '=') { 
+                if (equationDisplayArray[i] == '=') {
+                    equationArray.push(number);
+                } else {
+                    op = equationDisplayArray[i];
+                    equationArray.push(number);
+                    equationArray.push(op);
+                    op;
+                    number = '';
+                }
+        } else {
+            number += equationDisplayArray[i];
         }
     }
-    addDecimal();
 }
 
-// Adds decimal 
-function addDecimal () {
-    showDisplayValue('.');
+// ---- Math Functions ---- //
+
+function add(num1, num2) {
+    return num1 + num2;
 }
 
-// Addition function
-function add (inputNumber1, inputNumber2) {
-    var value = (inputNumber1 + inputNumber2);
-    displayValue = [];
-    roundValue(value);
+function subtract(num1, num2) {
+    return num1 - num2;
 }
 
-// Subtraction function
-function subtract (inputNumber1, inputNumber2) {
-    var value = (inputNumber1 - inputNumber2);
-    displayValue = [];
-    roundValue(value);
+function multiply(num1, num2) {
+    return num1 * num2;
 }
 
-// Multiplication function
-function multiply (inputNumber1, inputNumber2) {
-    var value = (inputNumber1 * inputNumber2);
-    displayValue = [];
-    roundValue(value);
+function divide(num1, num2) {
+    return num1 / num2;
 }
 
-// Division function
-function divide (inputNumber1, inputNumber2) {
-    var value = (inputNumber1 / inputNumber2);
-    displayValue = [];
-    roundValue(value);
+function makePercent () {
+    var percentValue; 
+
+    if (resultsValue[0] != 0){
+        percentValue = resultsValue/100
+        resultsValue = [];
+        return percentValue;
+    }
 }
 
-function roundValue (value) {
-    var newValue = parseFloat(value.toFixed(8));
-    displayValue = [];
-    showDisplayValue(newValue);
+// Calls appropriate operator function
+function operate (operator, num1, num2) {
+    switch (operator) {
+        case '+':
+            return add(num1, num2);
+        case '-':
+            return subtract(num1, num2);
+        case '*':
+            return multiply(num1, num2);
+        case '/':
+            return divide(num1, num2);
+    }
 }
 
-// Calls the appropriate function based on the operator and passes the two inputted numbers to them
-function operate (operator, inputNumber1, inputNumber2) {
-    if (operator == "add") {
-        add(inputNumber1, inputNumber2);
-    } else if (operator == "subtract") {
-        subtract(inputNumber1, inputNumber2)
-    } else if (operator == "multiply") {
-        multiply(inputNumber1, inputNumber2)
-    } else if (operator == "divide") {
-        divide(inputNumber1, inputNumber2)
-    } 
+// Gets the final result from the equation array //
+function getResult () {
+    for (var i = 0; i<equationArray.length; i++){
+        if (equationArray[i] == '*' || equationArray[i] == '/') {
+            equationArray[i-1] = operate(equationArray[i], equationArray[i-1], equationArray[i+1]);
+            equationArray.splice(i, 1);
+            equationArray.splice(i, 1);
+            i--;
+        }
+    }
+    for (var i = 0; i<equationArray.length; i++){
+            if (equationArray[i] == '+' || equationArray[i] == '-') {
+            equationArray[i-1] = operate(equationArray[i], Number(equationArray[i-1]), Number(equationArray[i+1])); 
+            equationArray.splice(i, 1);
+            equationArray.splice(i, 1);
+            i--;
+        }
+    }
+    resultValue = equationArray;
+    return resultValue;
 }
+
+
+
+// ---- Display Functions ---- //
+
+// Updates the result display
+function updateResultsDisplay (input) {
+    if (resultsValue[0] == 0){
+        resultsValue = [];
+    }
+    resultsValue.push(input);
+    resultsDisplay.innerHTML = resultsValue.join("");
+}
+
+// Updates the current equation displayed on the calculator 
+function updateEquationDisplay (input) {
+    if (equationDisplayArray[0] == 0){
+        equationDisplayArray = [];
+    }
+    equationDisplayArray.push(input);
+    equationDisplay.innerHTML = equationDisplayArray.join("");
+}
+
+// Checks if result has been displayed in order to operate on it
+function checkDisplay (operator) {
+    for (var i=0; i<equationDisplayArray.length; i++) {
+        if (equationDisplayArray[i] == '=') {
+            if (operator == '+' ||
+                operator == '-' ||
+                operator == 'x' ||
+                operator == '/') {
+                    var oldResult = resultsValue;
+                    clearAll();
+                    updateEquationDisplay(oldResult);
+                    return;
+            } 
+            return true;
+        }
+    }
+}
+
+// Clears the  displays
+function clearAll () {
+    equationDisplayArray = [];
+    equationArray = [];
+    resultsValue = [];
+    operatorSelection;
+    updateEquationDisplay(" ");
+    updateResultsDisplay(0);
+}
+
+
+
+
+// ---- Event Listners ---- //
+
+number.forEach(function(e) {
+    e.addEventListener('click', function () {
+        if (checkDisplay()) {
+            clearAll();
+            updateEquationDisplay(this.id);
+        } else {
+            updateEquationDisplay(this.id);
+        }
+        
+    });
+});
+
+operator.forEach(function(e) {
+    e.addEventListener('click', function () {
+        checkDisplay(this.id);
+        updateEquationDisplay(this.id);
+    });
+});
+
+equals.addEventListener('click', function () {
+    updateEquationDisplay(this.id)
+    createEquationArray();
+    updateResultsDisplay(getResult());
+});
+
+clear.addEventListener('click', function () {
+    clearAll();
+});
+
+decimal.addEventListener('click', function () {
+    updateEquationDisplay(this.id);
+});
+
+negative.addEventListener('click', function () {
+    updateEquationDisplay(this.id)
+
+});
+
+percent.addEventListener('click', function () {
+    
+    updateResultsDisplay(makePercent());
+});

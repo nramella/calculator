@@ -13,36 +13,37 @@
     <div class="main">
         <div class="calculator">
             <div class="display">
-                <p id="displayValue"></p>
+                <p class="equationDisplay"></p>
+                <p class="resultsDisplay">0</p>
             </div>
             <div class="row">
-                <button class="button" id="clear" onclick="clearCalc()">AC</button>
-                <button class="button" id="negative" onclick="negative('-')">+-</button>
-                <button class="button" id="percent" onclick="percent()">%</button>
-                <button class="button operator" id="divide" onclick="storeOperator('divide')">/</button>
+                <button class="clearBtn" id="clear">AC</button>
+                <button class="negBtn" id="-">+-</button>
+                <button class="percentBtn" id="percent">%</button>
+                <button class="operatorBtn" id="/">/</button>
             </div>
             <div class="row">
-                <button class="button" id="7" onclick="showDisplayValue(7)">7</button>
-                <button class="button" id="8" onclick="showDisplayValue(8)">8</button>
-                <button class="button" id="9" onclick="showDisplayValue(9)">9</button>
-                <button class="button operator" id="multiply" onclick="storeOperator('multiply')">x</button>
+                <button class="numBtn" id="7">7</button>
+                <button class="numBtn" id="8">8</button>
+                <button class="numBtn" id="9">9</button>
+                <button class="operatorBtn" id="*">x</button>
             </div>
             <div class="row">
-                <button class="button" id="4" onclick="showDisplayValue(4)">4</button>
-                <button class="button" id="5" onclick="showDisplayValue(5)">5</button>
-                <button class="button" id="6" onclick="showDisplayValue(6)">6</button>
-                <button class="button operator" id="subtract" onclick="storeOperator('subtract')">-</button>
+                <button class="numBtn" id="4">4</button>
+                <button class="numBtn" id="5">5</button>
+                <button class="numBtn" id="6">6</button>
+                <button class="operatorBtn" id="-">-</button>
             </div>
             <div class="row">
-                <button class="button" id="1" onclick="showDisplayValue(1)">1</button>
-                <button class="button" id="2" onclick="showDisplayValue(2)">2</button>
-                <button class="button" id="3" onclick="showDisplayValue(3)">3</button>
-                <button class="button operator" id="add" onclick="storeOperator('add')">+</button>
+                <button class="numBtn" id="1" value="1">1</button>
+                <button class="numBtn" id="2">2</button>
+                <button class="numBtn" id="3">3</button>
+                <button class="operatorBtn" id="+">+</button>
             </div>
             <div class="row">
-                <button class="button" id="zero" onclick="showDisplayValue(0)">0</button>
-                <button class="button" id="." onclick="checkDecimal()">.</button>
-                <button class="button operator" id="equals" onclick="equals()">=</button>
+                <button class="numBtn" id="0">0</button>
+                <button class="decBtn" id=".">.</button>
+                <button class="equalsBtn" id="=">=</button>
             </div>
 
         </div>

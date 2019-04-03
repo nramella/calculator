@@ -18,18 +18,24 @@ html, body {
 }
 
 .display {
-    color: white;
     height: 120px;
-}
-
-#displayValue {
-    text-align: right;
     margin: 15px;
-    padding-top: 30px;
-    font-size: 48pt;
+    color: white;
+    text-align: right;
 }
 
-.button {
+.equationDisplay {
+    font-size: 24pt;
+    color: #9b9b9b;
+}
+
+.resultsDisplay {
+    font-size: 50pt;
+    margin-top: -20px;
+    margin-bottom: 0;
+}
+
+button {
     display: inline-block;
     margin: 5px;
     padding: 10px;
@@ -41,19 +47,20 @@ html, body {
     border-radius: 50%;
 }
 
-.button:hover {
+button:hover {
     background-color: #505050;
 }
 
-.operator {
+.operatorBtn {
     background-color: #EA8120;
 }
 
-.operator:hover{
-    background-color: rgb(255, 148, 98);
+.operatorBtn:hover{
+    background-color: white;
+    color: #EA8120;
 }
 
-#zero {
+[id="0"] {
     width: 155px;
     padding-left: 25px;
     border-radius: 30pt;
