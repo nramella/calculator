@@ -27,10 +27,11 @@ html, body {
 .equationDisplay {
     font-size: 24pt;
     color: #9b9b9b;
+    height: 30px;
 }
 
 .resultsDisplay {
-    font-size: 50pt;
+    font-size: 52pt;
     margin-top: -20px;
     margin-bottom: 0;
 }

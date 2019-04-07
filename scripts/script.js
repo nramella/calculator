@@ -13,6 +13,7 @@ var equationDisplayArray = [];
 var equationArray = [];
 var resultsValue = [];
 var operatorSelection;
+var decimalCounter = 0;
 
 // Creates array with the full equation to be solved // 
 function createEquationArray () {
@@ -65,6 +66,15 @@ function makePercent () {
         percentValue = resultsValue/100
         resultsValue = [];
         return percentValue;
+    }
+}
+
+// Checks if decimal has already been added
+function checkDecimal () {
+    if (decimalCounter <= 1) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -150,6 +160,7 @@ function clearAll () {
     equationArray = [];
     resultsValue = [];
     operatorSelection;
+    decimalCounter = 0;
     updateEquationDisplay(" ");
     updateResultsDisplay(0);
 }
@@ -173,6 +184,7 @@ number.forEach(function(e) {
 
 operator.forEach(function(e) {
     e.addEventListener('click', function () {
+        decimalCounter = 0; // reset counter for decimal
         checkDisplay(this.id);
         updateEquationDisplay(this.id);
     });
@@ -189,7 +201,10 @@ clear.addEventListener('click', function () {
 });
 
 decimal.addEventListener('click', function () {
-    updateEquationDisplay(this.id);
+    decimalCounter++;
+    if (checkDecimal()){
+        updateEquationDisplay(this.id);
+    }
 });
 
 negative.addEventListener('click', function () {
