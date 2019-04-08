@@ -110,7 +110,7 @@ function getResult () {
             i--;
         }
     }
-    resultValue = equationArray;
+    resultValue = Math.round(equationArray * 10000000) / 10000000;
     return resultValue;
 }
 
